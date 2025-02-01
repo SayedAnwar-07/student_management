@@ -5,6 +5,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from .forms import UserRegisterForm, StudentForm
 from .models import Student
+from django.contrib import messages
+
 
 
 # register class
@@ -70,6 +72,7 @@ class StudentCreateView(LoginRequiredMixin, View):
             student = form.save(commit=False)
             student.user = request.user
             student.save()
+            messages.success(request, "Student successfully created!")
             return redirect('student_list')
         return render(request, 'students/student_info/student_form.html', {'form': form})
 
@@ -86,6 +89,7 @@ class StudentUpdateView(LoginRequiredMixin, View):
         form = StudentForm(request.POST, request.FILES, instance=student)
         if form.is_valid():
             form.save()
+            messages.success(request, "Student form successfully updated")
             return redirect('student_list')
         return render(request, 'students/student_info/student_form.html', {'form': form})
 
@@ -106,4 +110,5 @@ class StudentDeleteView(LoginRequiredMixin, View):
     def post(self, request, student_id, *args, **kwargs):
         student = get_object_or_404(Student, id=student_id, user=request.user)
         student.delete()
+        messages.success(request, "Student successfully deleted!")
         return redirect('student_list')

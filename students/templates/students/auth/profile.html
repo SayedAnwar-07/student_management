@@ -21,10 +21,10 @@
 <div class="container mx-auto p-6 bg-white rounded-lg">
   <!-- Profile Section -->
   <div class="flex flex-col items-center mb-8">
-    <h2 class="text-3xl font-semibold text-gray-700 mb-2">
-      Welcome, {{ user.username }}
+    <h2 class="text-3xl font-bold text-black mb-2">
+      Welcome, <span class="text-[#ff6c37]">{{ user.username }}</span>
     </h2>
-    <p class="text-lg text-gray-500 mb-4">Email: {{ user.email }}</p>
+    <p class="text-lg text-gray-500 mb-4"><strong>Email: </strong>{{ user.email }}</p>
     <hr class="border-t-2 border-gray-200 w-full mb-6" />
   </div>
 
@@ -53,9 +53,9 @@
               class="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap"
             >
               <div
-                class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800"
+                class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-[#ff7d1b24]"
               >
-                <h2 class="text-sm font-normal text-emerald-500">
+                <h2 class="text-sm font-normal text-[#ff6c37]">
                   {{ forloop.counter }}
                 </h2>
               </div>

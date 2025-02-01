@@ -1,8 +1,8 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
-{% block title %}Student Management | Home{% endblock%} 
+ {% block title %}Student Management | Home{%endblock%}
 
-{% block content %}
+  {% block content %}
 <!-- Hero Section -->
 <div
   class="container mx-auto hero mt-20 flex flex-col lg:flex-row justify-between"
@@ -11,7 +11,7 @@
     <div class="w-[90%]">
       <h2 class="text-4xl font-bold text-gray-800 mb-6">
         Manage Users Seamlessly with Django
-        <span class="text-primary">CRUD</span> &
+        <span class="text-[#ff6c37]">CRUD</span> &
         <span class="text-[#26ab6c]">Authentication</span>
       </h2>
       <p class="text-md text-gray-600 mb-6 w-[77%] text-slate-500">
@@ -21,11 +21,28 @@
         delete student data effortlessly, while ensuring your application is
         safeguarded with robust login and registration systems.
       </p>
-      <button
-        class="px-6 py-3 rounded bg-primary text-white hover:bg-[#4f18c9] transition duration-300"
+
+      {% if request.user.is_authenticated %}
+      <button>
+        <a
+        class="my-2 px-6 py-3 rounded bg-[#144131] text-white hover:bg-[#1b5a44] transition duration-300 md:my-0 flex justify-center items-center gap-2 inline-block"
+        href="{% url 'student_create' %}"
+        >Explore Features <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+        </svg></a
       >
-        Explore Features
       </button>
+      {% else %}
+        <button>
+          <a
+          class="my-2 px-6 py-3 rounded bg-[#144131] text-white hover:bg-[#1b5a44] transition duration-300 md:my-0 flex justify-center items-center gap-2 inline-block"
+          href="{% url 'login' %}"
+          >Explore Features <svg  xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+          </svg></a
+        >
+        </button>
+      {% endif %}
     </div>
   </div>
 

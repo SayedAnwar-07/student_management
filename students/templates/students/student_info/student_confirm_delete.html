@@ -6,16 +6,20 @@
 <div class="flex items-center justify-center min-h-[70vh]">
     <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full text-center border">
         <h2 class="text-2xl font-semibold text-gray-800">Confirm Deletion</h2>
-        <p class="text-gray-600 mt-3">Are you sure you want to delete <span class="font-bold text-red-500">"{{ student.name }}"</span>?</p>
+        <p class="text-gray-600 mt-3">Are you sure you want to delete <span class="font-bold text-red-600">"{{ student.name }}"</span>?</p>
 
         <form method="POST" class="mt-5">
             {% csrf_token %}
             <div class="flex justify-center space-x-4">
-                <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow-md transition">
-                    Yes, Delete
+                <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md shadow-md transition flex justify-center items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                      </svg>Yes, Delete
                 </button>
-                <a href="{% url 'student_list' %}" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded-lg shadow-md transition">
-                    Cancel
+                <a href="{% url 'student_list' %}" class="cursor-pointer px-4 py-2 rounded bg-[#144131] text-white hover:bg-[#1b5a44] transition duration-300 flex justify-between items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+                      </svg>Cancel
                 </a>
             </div>
         </form>

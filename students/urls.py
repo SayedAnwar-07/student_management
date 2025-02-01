@@ -4,8 +4,8 @@ from .views import RegisterForm,LoginForm,UserProfileView,LogoutView,StudentList
 
 urlpatterns = [
     # user urls
-    path('register/', RegisterForm.as_view(), name='register'),
-    path('login/', LoginForm.as_view(), name='login'),
+    path('', LoginForm.as_view(), name='login'),
+    path('register/', RegisterForm.as_view(), name='register'),  
     path('logout/', LogoutView.as_view(), name='logout'),
     path('profile/', UserProfileView.as_view(), name='profile'),
 

@@ -8,7 +8,7 @@ import re
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields = ['name', 'email', 'phone_number', 'course', 'image']
+        fields = ['name', 'email', 'phone_number', 'course', 'description' ,'image']
 
 class UserRegisterForm(UserCreationForm):
     username = forms.CharField(

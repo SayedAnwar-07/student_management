@@ -12,6 +12,7 @@ class Student(models.Model):
     email = models.EmailField()
     phone_number = models.CharField(max_length=15)
     course = models.CharField(max_length=100)
+    description = models.CharField(max_length=2000 ,default='')
     image = models.ImageField(upload_to=student_name_dict,default='default/images_1.jpg', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

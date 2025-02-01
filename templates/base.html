@@ -37,14 +37,23 @@
         <div
           class="flex items-center justify-between text-2xl font-bold text-primary"
         >
-          <a href="{% url 'hero' %}">
-            <img
-              class="h-8 w-24"
-              src="https://www.djangoproject.com/m/img/logos/django-logo-positive.png"
-              alt="logo"
-            />
-          </a>
-
+        {% if request.user.is_authenticated %}         
+            <a
+            class="my-2 text-2xl text-[#ff6c37] hover:text-[#d2682a] transition duration-300 flex items-center justify-center gap-2 md:mx-4 md:my-0"
+            href="{% url 'hero' %}"
+            ><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+            </svg>{{user.username}}</a>
+        {% else %} 
+            <a href="{% url 'hero' %}">
+              <img
+                class="h-8 w-24"
+                src="https://www.djangoproject.com/m/img/logos/django-logo-positive.png"
+                alt="logo"
+              />
+            </a>
+        {% endif %}  
           <!-- Mobile menu button -->
           <div class="flex lg:hidden">
             <button
@@ -97,7 +106,7 @@
             
             {% if request.user.is_authenticated %}
             <a
-              class="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
+              class="my-2 text-[#ff6c37] hover:text-[#d2682a] transition duration-300 md:mx-4 md:my-0"
               href="{% url 'student_create' %}"
               >Student form</a
             >
@@ -107,7 +116,7 @@
 
              {% if request.user.is_authenticated %}
             <a
-              class="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
+              class="my-2 text-[#ff6c37] hover:text-[#d2682a] transition duration-300 md:mx-4 md:my-0"
               href="{% url 'student_list' %}"
               >Student list</a
             >
@@ -117,7 +126,7 @@
 
             {% if request.user.is_authenticated %}
             <a
-              class="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
+              class="my-2 text-[#ff6c37] hover:text-[#d2682a] transition duration-300 md:mx-4 md:my-0"
               href="{% url 'profile' %}"
               >Profile</a
             >
@@ -136,28 +145,94 @@
             {% if request.user.is_authenticated %}
             <a
               href="{% url 'logout' %}"
-              class="px-4 py-2 rounded bg-primary text-white hover:bg-[#4f18c9] transition duration-300"
+              class="px-4 py-2 bg-[#ff7d1b] text-white hover:bg-[#d2682a] transition duration-300 rounded-md flex items-center justify-center gap-2"
             >
-              Logout
+            <span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+              <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+            </svg></span> Logout
             </a>
             {% else %}
             <a
               href="{% url 'login' %}"
-              class="px-4 py-2 rounded bg-primary text-white hover:bg-[#4f18c9] transition duration-300"
+              class="px-4 py-2 rounded bg-[#144131] text-white hover:bg-[#1b5a44] transition duration-300 flex items-center justify-center gap-2"
             >
-              Sign in
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
+              <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+            </svg>Sign in
             </a>
             <a
               href="{% url 'register' %}"
-              class="px-4 py-2 rounded hover:bg-[#37c480] text-white bg-[#2ca565] transition duration-300"
+              class="px-4 py-2 bg-[#ff7d1b] text-white hover:bg-[#d2682a] transition duration-300 rounded-md flex items-center justify-center gap-2"
             >
-              Sign up
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+              <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+              <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
+            </svg>Sign up
             </a>
             {% endif %}
           </div>
         </div>
       </div>
     </nav>
+
+    <!-- Include Alpine.js in your base template (if not already loaded) -->
+<script src="//unpkg.com/alpinejs" defer></script>
+
+{% if messages %}
+  <!-- Toast container positioned at top right -->
+  <div class="fixed top-4 right-4 space-y-4 z-50">
+    {% for message in messages %}
+      <div 
+        x-data="{ show: true }" 
+        x-show="show" 
+        x-transition:enter="transform ease-out duration-300"
+        x-transition:enter-start="opacity-0 translate-y-2"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-300"
+        x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 translate-y-2"
+        class="max-w-sm w-full bg-green-100 shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden"
+        role="alert">
+        <div class="p-4">
+          <div class="flex items-start">
+            <!-- Optional: Insert an icon based on message.tags -->
+            <div class="flex-shrink-0">
+              {% if message.tags == "success" %}
+                <svg class="h-6 w-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              {% elif message.tags == "error" %}
+                <svg class="h-6 w-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              {% else %}
+                <svg class="h-6 w-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01" />
+                </svg>
+              {% endif %}
+            </div>
+            <div class="ml-3 flex-1">
+              <p class="text-sm font-medium text-gray-900">{{ message.tags|title }}</p>
+              <p class="mt-1 text-sm text-black">{{ message }}</p>
+            </div>
+            <div class="ml-4 flex-shrink-0">
+              <button @click="show = false" class="inline-flex text-gray-400 hover:text-gray-500 focus:outline-none">
+                <span class="sr-only">Close</span>
+                <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+  
 
     <!-- dynamic content -->
     <main class="">{% block content %} {% endblock %}</main>
