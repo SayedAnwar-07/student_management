@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Management</title>
+
+    {% load static %}
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- DaisyUI CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav
+      x-data="{ isOpen: false }"
+      class="relative bg-white shadow dark:bg-gray-800"
+    >
+      <div
+        class="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center"
+      >
+        <div
+          class="flex items-center justify-between text-2xl font-bold text-primary"
+        >
+          <a href="{% url 'hero' %}">
+            <img
+              class="h-8 w-24"
+              src="https://www.djangoproject.com/m/img/logos/django-logo-positive.png"
+              alt="logo"
+            />
+          </a>
+
+          <!-- Mobile menu button -->
+          <div class="flex lg:hidden">
+            <button
+              x-cloak
+              @click="isOpen = !isOpen"
+              type="button"
+              class="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400"
+              aria-label="toggle menu"
+            >
+              <svg
+                x-show="!isOpen"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M4 8h16M4 16h16"
+                />
+              </svg>
+
+              <svg
+                x-show="isOpen"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div
+          x-cloak
+          :class="[isOpen ? 'translate-x-0 opacity-100 ' : 'opacity-0 -translate-x-full']"
+          class="absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 md:mt-0 md:p-0 md:top-0 md:relative md:bg-transparent md:w-auto md:opacity-100 md:translate-x-0 md:flex md:items-center"
+        >
+          <div class="flex flex-col md:flex-row md:mx-6">
+            
+            {% if request.user.is_authenticated %}
+            <a
+              class="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
+              href="{% url 'student_create' %}"
+              >Student form</a
+            >
+            {% else %}
+            <a href=""></a>
+            {% endif %}
+
+             {% if request.user.is_authenticated %}
+            <a
+              class="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
+              href="{% url 'student_list' %}"
+              >Student list</a
+            >
+            {% else %}
+            <a href=""></a>
+            {% endif %} 
+
+            {% if request.user.is_authenticated %}
+            <a
+              class="my-2 text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
+              href="{% url 'profile' %}"
+              >Profile</a
+            >
+            {% else %}
+            <a href=""></a>
+            {% endif %}
+            
+          </div>
+        </div>
+        <div
+          x-cloak
+          :class="[isOpen ? 'translate-x-0 opacity-100 ' : 'opacity-0 -translate-x-full']"
+          class="absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 md:mt-0 md:p-0 md:top-0 md:relative md:bg-transparent md:w-auto md:opacity-100 md:translate-x-0 md:flex md:items-center"
+        >
+          <div class="flex flex-col md:flex-row gap-3 md:mx-6">
+            {% if request.user.is_authenticated %}
+            <a
+              href="{% url 'logout' %}"
+              class="px-4 py-2 rounded bg-primary text-white hover:bg-[#4f18c9] transition duration-300"
+            >
+              Logout
+            </a>
+            {% else %}
+            <a
+              href="{% url 'login' %}"
+              class="px-4 py-2 rounded bg-primary text-white hover:bg-[#4f18c9] transition duration-300"
+            >
+              Sign in
+            </a>
+            <a
+              href="{% url 'register' %}"
+              class="px-4 py-2 rounded hover:bg-[#37c480] text-white bg-[#2ca565] transition duration-300"
+            >
+              Sign up
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- dynamic content -->
+    <main class="">{% block content %} {% endblock %}</main>
+  </body>
+</html>

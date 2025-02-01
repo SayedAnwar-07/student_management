@@ -1,0 +1,129 @@
+{% extends 'base.html' %} 
+
+{% block title %}Student Management | Details{% endblock%} 
+
+{% block content %}
+<div class="container mx-auto p-6 bg-white rounded-lg dark:bg-gray-800">
+  <div class="flex justify-between items-center mb-6">
+    <h2 class="text-3xl font-semibold text-gray-700 dark:text-white">
+      Your Students
+    </h2>
+    <div>
+      <span class="text-sm font-semibold ml-2">Create a student</span>
+      <a
+        href="{% url 'student_create' %}"
+        class="bg-blue-500 text-white px-2 py-1 rounded-full hover:bg-blue-700 transition duration-300"
+      >
+        <i class="fa-solid fa-plus"></i>
+      </a>
+    </div>
+  </div>
+
+  {% if students %}
+  <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+    {% for student in students %}
+    <div
+      class="max-w-2xl overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800 relative group"
+    >
+      <!-- Image with Blur and Zoom Effect -->
+      <div class="relative overflow-hidden">
+        <img
+          class="object-cover w-full h-56 transition-all duration-300 transform group-hover:scale-105 group-hover:blur-sm"
+          src="{{ student.image.url }}"
+          alt="Student Image"
+        />
+
+        <!-- Details Button -->
+        <a
+          href="{% url 'student_details' student.id %}"
+          class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300"
+        >
+          <span class="px-6 py-2 font-bold text-sm border-2 rounded-md border-white"
+            >View Details</span
+          >
+        </a>
+      </div>
+
+      <div class="px-6 pt-3 pb-5">
+        <div>
+          <span
+            class="text-xs font-medium text-blue-600 uppercase dark:text-blue-400"
+            >Student</span
+          >
+          <h3
+            class="block mt-2 text-xl font-semibold text-gray-800 dark:text-white"
+          >
+            {{ student.name }}
+          </h3>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            Enrolled in: {{ student.course }}
+          </p>
+        </div>
+        <div class="mt-4 flex justify-between items-center">
+          <div class="flex items-center">
+            <img
+              class="object-cover h-6 rounded-full"
+              src="https://cdn3.iconfinder.com/data/icons/essential-rounded/64/Rounded-31-512.png"
+              alt="Avatar"
+            />
+            <span
+              class="mx-2 font-semibold text-gray-700 dark:text-gray-200 text-xs"
+              >{{ student.email }}</span
+            >
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex items-center gap-x-3">
+            <a
+              class="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none cursor-pointer"
+              href="{% url 'student_delete' student.id %}"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-5 h-5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                />
+              </svg>
+            </a>
+
+            <a
+              class="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none cursor-pointer"
+              href="{% url 'student_update' student.id %}"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-5 h-5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  {% else %}
+  <p class="text-gray-500 dark:text-gray-300 text-center">
+    You have no students yet.
+  </p>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'index.html' %} 
+
+{% block title %}Student Management | Home{% endblock%} 
+
+{% block content %}
+
+{% endblock %}
+
+
+Admin
+admin@gmail.com
+123
+
+Tamim
+123Admin#
+
+
+HEllo,Bossee,Balam
+123spi#Aaaa

@@ -1,0 +1,24 @@
+{% extends 'base.html' %} 
+
+{% block title %}Student Management | Delete{% endblock%} 
+
+{% block content %}
+<div class="flex items-center justify-center min-h-[70vh]">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full text-center border">
+        <h2 class="text-2xl font-semibold text-gray-800">Confirm Deletion</h2>
+        <p class="text-gray-600 mt-3">Are you sure you want to delete <span class="font-bold text-red-500">"{{ student.name }}"</span>?</p>
+
+        <form method="POST" class="mt-5">
+            {% csrf_token %}
+            <div class="flex justify-center space-x-4">
+                <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow-md transition">
+                    Yes, Delete
+                </button>
+                <a href="{% url 'student_list' %}" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded-lg shadow-md transition">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

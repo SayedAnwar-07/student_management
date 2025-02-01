@@ -1,0 +1,40 @@
+{% extends 'base.html' %} 
+
+{% block title %}Student Management | Home{% endblock%} 
+
+{% block content %}
+<!-- Hero Section -->
+<div
+  class="container mx-auto hero mt-20 flex flex-col lg:flex-row justify-between"
+>
+  <div class="w-full lg:w-1/2">
+    <div class="w-[90%]">
+      <h2 class="text-4xl font-bold text-gray-800 mb-6">
+        Manage Users Seamlessly with Django
+        <span class="text-primary">CRUD</span> &
+        <span class="text-[#26ab6c]">Authentication</span>
+      </h2>
+      <p class="text-md text-gray-600 mb-6 w-[77%] text-slate-500">
+        Welcome to our powerful and dynamic student management system. This
+        platform is built to simplify the management of student records and
+        streamline authentication for secure access. Create, read, update, and
+        delete student data effortlessly, while ensuring your application is
+        safeguarded with robust login and registration systems.
+      </p>
+      <button
+        class="px-6 py-3 rounded bg-primary text-white hover:bg-[#4f18c9] transition duration-300"
+      >
+        Explore Features
+      </button>
+    </div>
+  </div>
+
+  <div class="w-full lg:w-1/2">
+    <img
+      class="rounded-md"
+      src="https://i.ibb.co/6YVYrtB/Django-1.png"
+      alt="Django illustration"
+    />
+  </div>
+</div>
+{% endblock %}
