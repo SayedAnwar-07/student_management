@@ -18,11 +18,43 @@ A Django-based Student Management System that allows users to register, log in, 
 - Django 5.1.4
 - Python 3.x
 - SQLite (default DB)
-- Bootstrap (for frontend UI)
+- Tailwindcss CDN (for frontend UI)
 
 ## Directory Structure
+student_management/
+student_management/
+├── student_management/            
+│   ├── __init__.py
+│   ├── settings.py                
+│   ├── urls.py                    
+│   └── wsgi.py                    
+│
+├── students/                      
+│   ├── __init__.py
+│   ├── admin.py                   
+│   ├── apps.py                   
+│   ├── forms.py                   
+│   ├── migrations/                
+│   ├── models.py                  
+│   ├── tests.py                   
+│   ├── urls.py                    
+│   ├── views.py                   
+│   └── templates/                 
+│       └── students/
+│           ├── auth/              
+│           │   ├── login.html     
+│           │   ├── register.html  
+│           │   └── profile.html   
+│           │
+│           └── student_info/      
+│               ├── student_info.html  
+│               ├── student_list.html   
+│               ├── student_form.html   
+│               └── student_confirm_delete.html 
+│
+└── manage.py                      
+                 
 
-. ├── students/ │ ├── auth/ # Authentication views (Login, Register, Logout) │ │ ├── register.html │ │ ├── login.html │ │ └── profile.html │ ├── student_info/ # Student-related views and templates │ │ ├── student_list.html │ │ ├── student_form.html │ │ ├── student_info.html │ │ └── student_confirm_delete.html │ ├── forms.py # UserRegistration and Student forms │ ├── models.py # Student model definition │ └── urls.py # Routing for student views ├── manage.py ├── requirements.txt # Project dependencies └── README.md
 
 
 ## Setup
