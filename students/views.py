@@ -20,9 +20,10 @@ class RegisterForm(View):
         if form.is_valid():
             user = form.save()
             login(request, user)
+            messages.success(request, f"Account created successfully for {user.username}!")
             return redirect('profile')
+        messages.error(request, "Registration unsuccessful. Please check the errors below.")
         return render(request, 'students/auth/register.html', {'form': form})
-
 
 # login class
 class LoginForm(View):
@@ -35,6 +36,7 @@ class LoginForm(View):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
+            messages.success(request, f"{user.username} logged in successfully")
             return redirect('profile')
         return render(request, 'students/auth/login.html', {'form': form})
 
@@ -72,7 +74,7 @@ class StudentCreateView(LoginRequiredMixin, View):
             student = form.save(commit=False)
             student.user = request.user
             student.save()
-            messages.success(request, "Student successfully created!")
+            messages.success(request, f"{student.name} created successfully")
             return redirect('student_list')
         return render(request, 'students/student_info/student_form.html', {'form': form})
 
@@ -89,7 +91,7 @@ class StudentUpdateView(LoginRequiredMixin, View):
         form = StudentForm(request.POST, request.FILES, instance=student)
         if form.is_valid():
             form.save()
-            messages.success(request, "Student form successfully updated")
+            messages.success(request, f"{student.name} updated successfully")
             return redirect('student_list')
         return render(request, 'students/student_info/student_form.html', {'form': form})
 
@@ -110,5 +112,5 @@ class StudentDeleteView(LoginRequiredMixin, View):
     def post(self, request, student_id, *args, **kwargs):
         student = get_object_or_404(Student, id=student_id, user=request.user)
         student.delete()
-        messages.success(request, "Student successfully deleted!")
+        messages.success(request, f"{student.name} has been deleted")
         return redirect('student_list')
