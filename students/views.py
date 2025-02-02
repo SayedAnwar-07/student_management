@@ -38,6 +38,7 @@ class LoginForm(View):
             login(request, user)
             messages.success(request, f"{user.username} logged in successfully")
             return redirect('profile')
+        messages.error(request, "Login failed. Invalid username or password.")
         return render(request, 'students/auth/login.html', {'form': form})
 
 
